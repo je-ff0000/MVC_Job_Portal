@@ -1,0 +1,57 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build folders
+bin/
+obj/
+
+# Packages
+packages/
+
+# NuGet
+*.nupkg
+
+# IIS Express
+.vs/config/
+
+# Logs
+*.log
+
+# Rider
+.idea/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Temporary files
+*.cache
+*.tmp
+
+# SQL Server LocalDB
+*.mdf
+*.ldf
+
+# Publish Output
+Publish/
+publish/
+
+# Generated files
+Generated_Code/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Node (if ever used)
+node_modules/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/

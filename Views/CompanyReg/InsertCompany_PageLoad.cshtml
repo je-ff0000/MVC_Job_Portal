@@ -1,0 +1,110 @@
+﻿@model MVC_Project_Job_Portal.Models.CompanyInsert
+
+@{
+    ViewBag.Title = "InsertCompany_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Insert Company</h2>
+<div>
+    @using (Html.BeginForm("InsertCompany_Click", "CompanyReg", FormMethod.Post))
+    {
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+           
+            
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Username, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ComparePassword, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.PasswordFor(m => m.ComparePassword, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.ComparePassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Phone, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Website, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Description, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Location, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+            </div>
+            
+        </div>
+        <div>
+            <input type="submit" value="Insert" />
+            @Html.DisplayFor(m => m.Message)
+        </div>
+    }
+</div>
+

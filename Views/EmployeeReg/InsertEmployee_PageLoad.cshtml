@@ -1,0 +1,179 @@
+﻿@model MVC_Project_Job_Portal.Models.EmployeeInsert
+@{
+    ViewBag.Title = "InsertEmployee_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Insert Employee</h2>
+<div>
+    @using (Html.BeginForm("InsertEmployee_Click", "EmployeeReg", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group row">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Age, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Address, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Username, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ComparePassword, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.PasswordFor(m => m.ComparePassword, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.ComparePassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Phone, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Gender, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(m => m.Gender, "Male") Male
+                </label>
+                <label class="radio-inline" style="margin-left:15px;">
+                    @Html.RadioButtonFor(m => m.Gender, "Female") Female
+                </label>
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.DOB, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}",
+                new { @class = "form-control", type = "date" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Qualifications", new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @foreach (var item in Model.MyQual)
+                {
+                    <div class="checkbox-inline">
+                        <label>
+                            <input type="checkbox" value="@item.Value" checked="@item.isChecked" name="selectedQual" />
+                            @item.Text
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.selectedQual, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Skills, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Skills, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Skills, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ResumePath, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBox("resumeFile", "", new { Type = "file" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.ResumePath, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ProfileImage, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBox("profileFile", "", new { Type = "file" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.ProfileImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <input type="submit" value="Insert" />
+            <span class="text-success">
+                @Html.DisplayFor(m => m.Message)
+            </span>
+            
+        </div>
+    }
+</div>
+
