@@ -131,8 +131,8 @@
     <Compile Include="Company_Tab.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\CompanyRegController.cs" />
-    <Compile Include="Controllers\EmployeeRegController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Employee_Tab.cs">
@@ -235,11 +235,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CompanyReg\InsertCompany_PageLoad.cshtml" />
-    <Content Include="Views\EmployeeReg\InsertEmployee_PageLoad.cshtml" />
+    <Content Include="Views\Company\InsertCompany_PageLoad.cshtml" />
+	<Content Include="Views\Company\CompanyHome.cshtml" />
+    <Content Include="Views\Employee\InsertEmployee_PageLoad.cshtml" />
+	<Content Include="Views\Employee\EmployeeHome.cshtml" />
     <Content Include="Views\Login\LoginPageLoad.cshtml" />
-    <Content Include="Views\Login\EmployeeHome.cshtml" />
-    <Content Include="Views\Login\CompanyHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
