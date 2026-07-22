@@ -16,15 +16,6 @@ namespace MVC_Project_Job_Portal.Controllers
             return View();
         }
 
-        public ActionResult EmployeeHome()
-        {
-            return View();
-        }
-
-        public ActionResult CompanyHome()
-        {
-            return View();
-        }
 
         public ActionResult LoginClick(UserLogin clsobj)
         {
@@ -41,11 +32,11 @@ namespace MVC_Project_Job_Portal.Controllers
                         var logtype = dbobj.sp_LoginType(clsobj.Username, clsobj.Password).FirstOrDefault();
                         if(logtype == "Employee")
                         {
-                            return RedirectToAction("EmployeeHome");
+                            return RedirectToAction("EmployeeHome", "Employee");
                         }
                         else if (logtype == "Company")
                         {
-                            return RedirectToAction("CompanyHome");
+                            return RedirectToAction("CompanyHome", "Company");
                         }
                         else
                         {
