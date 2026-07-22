@@ -238,6 +238,8 @@
     <Content Include="Views\CompanyReg\InsertCompany_PageLoad.cshtml" />
     <Content Include="Views\EmployeeReg\InsertEmployee_PageLoad.cshtml" />
     <Content Include="Views\Login\LoginPageLoad.cshtml" />
+    <Content Include="Views\Login\EmployeeHome.cshtml" />
+    <Content Include="Views\Login\CompanyHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

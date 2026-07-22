@@ -336,5 +336,14 @@ namespace MVC_Project_Job_Portal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_LoginType", unameParameter, pwParameter);
         }
+    
+        public virtual ObjectResult<string> sp_GetCompanyName(Nullable<int> companyId)
+        {
+            var companyIdParameter = companyId.HasValue ?
+                new ObjectParameter("CompanyId", companyId) :
+                new ObjectParameter("CompanyId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetCompanyName", companyIdParameter);
+        }
     }
 }

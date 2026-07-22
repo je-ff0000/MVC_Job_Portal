@@ -123,6 +123,9 @@
         <Function Name="sp_GetCompanyById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cid" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetEmployeeById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="eid" Type="int" Mode="In" />
         </Function>
@@ -436,6 +439,9 @@
             <Parameter Name="uname" Mode="In" Type="String" />
             <Parameter Name="pw" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetCompanyName" ReturnType="Collection(String)">
+            <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_GetAllJobs_Result">
           <Property Type="Int32" Name="JobId" Nullable="false" />
@@ -640,6 +646,7 @@
           <FunctionImportMapping FunctionImportName="sp_GetRegId" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetRegId" />
           <FunctionImportMapping FunctionImportName="sp_LoginCountId" FunctionName="MVC_Project_Job_PortalModel.Store.sp_LoginCountId" />
           <FunctionImportMapping FunctionImportName="sp_LoginType" FunctionName="MVC_Project_Job_PortalModel.Store.sp_LoginType" />
+          <FunctionImportMapping FunctionImportName="sp_GetCompanyName" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetCompanyName" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
