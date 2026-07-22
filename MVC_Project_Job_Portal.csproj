@@ -237,12 +237,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CompanyReg\InsertCompany_PageLoad.cshtml" />
     <Content Include="Views\EmployeeReg\InsertEmployee_PageLoad.cshtml" />
+    <Content Include="Views\Login\LoginPageLoad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Photos\" />
     <Folder Include="Resumes\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
