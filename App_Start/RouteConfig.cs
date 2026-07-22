@@ -16,7 +16,7 @@ namespace MVC_Project_Job_Portal
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "EmployeeReg", action = "InsertEmployee_PageLoad", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "LoginPageLoad", id = UrlParameter.Optional }
             );
         }
     }
