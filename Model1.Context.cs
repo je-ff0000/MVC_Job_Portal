@@ -297,5 +297,44 @@ namespace MVC_Project_Job_Portal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Login", regidParameter, unameParameter, pwParameter, utypeParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetRegId(string uname, string pw)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pwParameter = pw != null ?
+                new ObjectParameter("pw", pw) :
+                new ObjectParameter("pw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetRegId", unameParameter, pwParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_LoginCountId(string uname, string pw)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pwParameter = pw != null ?
+                new ObjectParameter("pw", pw) :
+                new ObjectParameter("pw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_LoginCountId", unameParameter, pwParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_LoginType(string uname, string pw)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pwParameter = pw != null ?
+                new ObjectParameter("pw", pw) :
+                new ObjectParameter("pw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_LoginType", unameParameter, pwParameter);
+        }
     }
 }
