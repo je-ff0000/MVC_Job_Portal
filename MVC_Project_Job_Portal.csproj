@@ -134,6 +134,7 @@
     <Compile Include="Controllers\CompanyRegController.cs" />
     <Compile Include="Controllers\EmployeeRegController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Employee_Tab.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -166,6 +167,7 @@
     </Compile>
     <Compile Include="Models\CompanyInsert.cs" />
     <Compile Include="Models\EmployeeInsert.cs" />
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sp_GetAllJobs_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -240,6 +242,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Photos\" />
     <Folder Include="Resumes\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
