@@ -63,6 +63,12 @@ namespace MVC_Project_Job_Portal.Controllers
             return RedirectToAction("InsertCompany_PageLoad", clsobj);
         }
 
-
+        public ActionResult CompanyHome()
+        {
+            int regId = Convert.ToInt32(Session["RegId"]);
+            var companyName = dbobj.sp_GetCompanyName(regId).FirstOrDefault();
+            ViewBag.CompanyName = companyName;
+            return View();
+        }
     }
 }

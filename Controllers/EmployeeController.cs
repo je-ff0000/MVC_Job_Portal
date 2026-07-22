@@ -113,5 +113,10 @@ namespace MVC_Project_Job_Portal.Controllers
             clsobj.MyQual = getQualificationData();
             return View("InsertEmployee_PageLoad", clsobj);
         }
+
+        public ActionResult EmployeeHome()
+        {
+            return View();
+        }
     }
 }
