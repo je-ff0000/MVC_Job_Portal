@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVC_Project_Job_Portal.sp_ViewPostedJobs_Result>
+@{
+    ViewBag.Title = "ViewJobs_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Posted Jobs</h2>
+
+@if (ViewBag.Message != null)
+{ 
+    <h4 class="text-danger">@ViewBag.Message</h4>
+}
+else
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>Job Title</th>
+            <th>Location</th>
+            <th>Salary</th>
+            <th>Posted Date</th>
+            <th></th>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.JobTitle</td>
+                <td>@item.Location</td>
+                <td>@item.Salary</td>
+                <td>@item.PostedDate.ToShortDateString()</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditJob_PageLoad", new { id = item.JobId })
+                    @Html.ActionLink("Delete", "DeleteJob", new {id = item.JobId})
+                </td>
+            </tr>
+        }
+    </table>
+}
+
