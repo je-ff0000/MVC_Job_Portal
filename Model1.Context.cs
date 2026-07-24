@@ -345,5 +345,23 @@ namespace MVC_Project_Job_Portal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetCompanyName", companyIdParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetJobsCountByCompany(Nullable<int> cid)
+        {
+            var cidParameter = cid.HasValue ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetJobsCountByCompany", cidParameter);
+        }
+    
+        public virtual ObjectResult<sp_ViewPostedJobs_Result> sp_ViewPostedJobs(Nullable<int> cid)
+        {
+            var cidParameter = cid.HasValue ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ViewPostedJobs_Result>("sp_ViewPostedJobs", cidParameter);
+        }
     }
 }

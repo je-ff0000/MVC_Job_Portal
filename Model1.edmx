@@ -132,6 +132,9 @@
         <Function Name="sp_GetJobById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jid" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetJobsCountByCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetRegId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="uname" Type="varchar" Mode="In" />
           <Parameter Name="pw" Type="varchar" Mode="In" />
@@ -199,6 +202,9 @@
         </Function>
         <Function Name="sp_UpdateJobStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="status" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ViewPostedJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="MVC_Project_Job_PortalModelStoreContainer">
           <EntitySet Name="Company_Tab" EntityType="Self.Company_Tab" Schema="dbo" store:Type="Tables" />
@@ -440,7 +446,13 @@
             <Parameter Name="pw" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_GetCompanyName" ReturnType="Collection(String)">
-            <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+          <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetJobsCountByCompany" ReturnType="Collection(Int32)">
+            <Parameter Name="cid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ViewPostedJobs" ReturnType="Collection(MVC_Project_Job_PortalModel.sp_ViewPostedJobs_Result)">
+            <Parameter Name="cid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_GetAllJobs_Result">
@@ -489,6 +501,21 @@
           <Property Type="String" Name="ResumePath" Nullable="false" MaxLength="300" />
           <Property Type="DateTime" Name="AppliedDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="ApplicationStatus" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="sp_ViewPostedJobs_Result">
+          <Property Type="Int32" Name="JobId" Nullable="false" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="JobDescription" Nullable="false" />
+          <Property Type="String" Name="SkillsRequired" Nullable="false" />
+          <Property Type="Int32" Name="ExperienceRequired" Nullable="false" />
+          <Property Type="String" Name="Qualification" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="Salary" Nullable="false" Precision="12" Scale="2" />
+          <Property Type="String" Name="JobType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Location" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="LastDate" Nullable="false" />
+          <Property Type="DateTime" Name="PostedDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -647,6 +674,26 @@
           <FunctionImportMapping FunctionImportName="sp_LoginCountId" FunctionName="MVC_Project_Job_PortalModel.Store.sp_LoginCountId" />
           <FunctionImportMapping FunctionImportName="sp_LoginType" FunctionName="MVC_Project_Job_PortalModel.Store.sp_LoginType" />
           <FunctionImportMapping FunctionImportName="sp_GetCompanyName" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetCompanyName" />
+          <FunctionImportMapping FunctionImportName="sp_GetJobsCountByCompany" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetJobsCountByCompany" />
+          <FunctionImportMapping FunctionImportName="sp_ViewPostedJobs" FunctionName="MVC_Project_Job_PortalModel.Store.sp_ViewPostedJobs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC_Project_Job_PortalModel.sp_ViewPostedJobs_Result">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="SkillsRequired" ColumnName="SkillsRequired" />
+                <ScalarProperty Name="ExperienceRequired" ColumnName="ExperienceRequired" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
