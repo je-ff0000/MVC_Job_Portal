@@ -70,5 +70,29 @@ namespace MVC_Project_Job_Portal.Controllers
             ViewBag.CompanyName = companyName;
             return View();
         }
+
+        public ActionResult InsertJob_PageLoad()
+        {
+            return View();
+        }
+
+        public ActionResult InsertJob_Click()
+        {
+            
+        }
+
+        public ActionResult ViewJobs_PageLoad()
+        {
+            int CompanyId = Convert.ToInt32(Session["RegId"]);
+            var jobs = dbobj.sp_ViewPostedJobs(CompanyId).ToList();
+
+            if(jobs.Count == 0)
+            {
+                ViewBag.Message = "No Posted Jobs";
+            }
+
+            return View(jobs);
+        }
+
     }
 }
