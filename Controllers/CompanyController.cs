@@ -94,10 +94,13 @@ namespace MVC_Project_Job_Portal.Controllers
         
         public ActionResult InsertJob_Click(JobInsert clsobj)
         {
+            int companyId = Convert.ToInt32(Session["RegId"]);
+
             if (ModelState.IsValid)
             {
                 ViewBag.JobTypes = GetJobTypes();
 
+                dbobj.sp_InsertJob(companyId, clsobj.JobTitle, clsobj.JobDescription, clsobj.SkillsRequired, clsobj.ExpRequired, clsobj.Qualification, clsobj.Salary, clsobj.JobType, clsobj.Location, clsobj.LastDate);
             }
             return View("InsertJob_PageLoad", clsobj);
         }
