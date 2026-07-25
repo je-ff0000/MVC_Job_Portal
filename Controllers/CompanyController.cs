@@ -71,14 +71,35 @@ namespace MVC_Project_Job_Portal.Controllers
             return View();
         }
 
+        public List<SelectListItem> GetJobTypes()
+        {
+            List<SelectListItem> jobtypes = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "--Select Job Type", Value=""},
+                new SelectListItem {Text = "Full Time", Value = "Full Time"},
+                new SelectListItem {Text = "Part Time", Value = "Part Time"},
+                new SelectListItem {Text = "Internship", Value = "Internship"},
+                new SelectListItem {Text = "Contract", Value = "Contract"}
+            };
+
+            return jobtypes;
+        }
         public ActionResult InsertJob_PageLoad()
         {
-            return View();
-        }
+            JobInsert job = new JobInsert();
 
-        public ActionResult InsertJob_Click()
+            ViewBag.JobTypes = GetJobTypes();
+            return View(job);
+        }
+        
+        public ActionResult InsertJob_Click(JobInsert clsobj)
         {
-            
+            if (ModelState.IsValid)
+            {
+                ViewBag.JobTypes = GetJobTypes();
+
+            }
+            return View("InsertJob_PageLoad", clsobj);
         }
 
         public ActionResult ViewJobs_PageLoad()
