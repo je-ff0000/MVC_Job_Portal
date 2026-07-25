@@ -12,7 +12,7 @@ namespace MVC_Project_Job_Portal.Models
         public string JobDescription { get; set; }
         public string SkillsRequired { get; set; }
         public int ExpRequired { get; set; }
-        public string Qualifiation { get; set; }
+        public string Qualification { get; set; }
         public decimal Salary { get; set; }
         public string JobType { get; set; } //dropdown
         public string Location { get; set; }
