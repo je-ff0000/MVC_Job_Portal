@@ -7,7 +7,7 @@
 <h2>Insert Job</h2>
 
 <div>
-    @using(Html.BeginForm("InsertJob_Click", "Company", FormMethod.Post))
+    @using (Html.BeginForm("InsertJob_Click", "Company", FormMethod.Post))
     {
         <div class="form-group row">
             @Html.LabelFor(m => m.JobTitle, new { @class = "col-md-3 control-label" })
@@ -16,6 +16,60 @@
             </div>
             <div class="col-md-4">
                 @Html.ValidationMessageFor(m => m.JobTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.JobDescription, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.JobDescription, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.JobDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.SkillsRequired, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.SkillsRequired, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.SkillsRequired, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ExpRequired, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.ExpRequired, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.ExpRequired, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Qualification, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Qualification, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Qualification, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Salary, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.JobType, new { @class = "col-md-3 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.JobType, (IEnumerable<SelectListItem>)ViewBag.JobTypes, new { @class = "form-control" }))
+            </div>
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(m => m.JobType, "", new { @class = "text-danger" })
             </div>
         </div>
     }
