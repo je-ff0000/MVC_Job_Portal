@@ -98,9 +98,19 @@ namespace MVC_Project_Job_Portal.Controllers
 
             if (ModelState.IsValid)
             {
-                ViewBag.JobTypes = GetJobTypes();
+                try
+                {   
+                    dbobj.sp_InsertJob(companyId, clsobj.JobTitle, clsobj.JobDescription, clsobj.SkillsRequired, clsobj.ExpRequired, clsobj.Qualification, clsobj.Salary, clsobj.JobType, clsobj.Location, clsobj.LastDate);
+                    TempData["Message"] = "Job posted successfully";
+                    return RedirectToAction("InsertJob_PageLoad");
+                }
+                catch(Exception ex)
+                {
+                    ViewBag.JobTypes = GetJobTypes();
+                    TempData["Message"] = ex.Message;
+                    return View("InsertJob_PageLoad", clsobj);
+                }
 
-                dbobj.sp_InsertJob(companyId, clsobj.JobTitle, clsobj.JobDescription, clsobj.SkillsRequired, clsobj.ExpRequired, clsobj.Qualification, clsobj.Salary, clsobj.JobType, clsobj.Location, clsobj.LastDate);
             }
             return View("InsertJob_PageLoad", clsobj);
         }
