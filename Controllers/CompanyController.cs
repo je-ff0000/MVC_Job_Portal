@@ -87,7 +87,11 @@ namespace MVC_Project_Job_Portal.Controllers
         public ActionResult InsertJob_PageLoad()
         {
             JobInsert job = new JobInsert();
-
+            if(TempData["Message"] != null)
+            {
+                job.Message = TempData["Message"].ToString();
+            }
+            
             ViewBag.JobTypes = GetJobTypes();
             return View(job);
         }
