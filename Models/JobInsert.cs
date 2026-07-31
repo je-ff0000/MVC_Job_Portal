@@ -34,5 +34,6 @@ namespace MVC_Project_Job_Portal.Models
 
         [Required]
         public DateTime LastDate { get; set; }
+        public string Message { get; set; }
     }
 }
