@@ -79,7 +79,9 @@ namespace MVC_Project_Job_Portal.Controllers
                 new SelectListItem {Text = "Full Time", Value = "Full Time"},
                 new SelectListItem {Text = "Part Time", Value = "Part Time"},
                 new SelectListItem {Text = "Internship", Value = "Internship"},
-                new SelectListItem {Text = "Contract", Value = "Contract"}
+                new SelectListItem {Text = "Hybrid", Value = "Hybrid"},
+                new SelectListItem {Text = "Remote", Value = "Remote"}
+
             };
 
             return jobtypes;

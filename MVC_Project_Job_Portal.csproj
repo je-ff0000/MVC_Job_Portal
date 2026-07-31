@@ -167,6 +167,7 @@
     </Compile>
     <Compile Include="Models\CompanyInsert.cs" />
     <Compile Include="Models\EmployeeInsert.cs" />
+    <Compile Include="Models\JobInsert.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\ViewJobs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
