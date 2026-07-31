@@ -91,7 +91,7 @@ namespace MVC_Project_Job_Portal.Controllers
             {
                 job.Message = TempData["Message"].ToString();
             }
-            
+            job.LastDate = DateTime.Today;
             ViewBag.JobTypes = GetJobTypes();
             return View(job);
         }
