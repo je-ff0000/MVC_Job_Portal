@@ -5,7 +5,9 @@
 }
 
 <h2>Insert Job</h2>
-
+<p>
+    @Html.ActionLink("Back to Dashboard", "CompanyHome")
+</p>
 <div>
     @using (Html.BeginForm("InsertJob_Click", "Company", FormMethod.Post))
     {
