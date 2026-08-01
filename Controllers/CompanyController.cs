@@ -113,7 +113,7 @@ namespace MVC_Project_Job_Portal.Controllers
                 catch(Exception ex)
                 {
                     ViewBag.JobTypes = GetJobTypes();
-                    TempData["Message"] = ex.Message;
+                    clsobj.Message = ex.Message;
                     return View("InsertJob_PageLoad", clsobj);
                 }
 
@@ -132,6 +132,11 @@ namespace MVC_Project_Job_Portal.Controllers
             }
 
             return View(jobs);
+        }
+
+        public ActionResult EditJob()
+        {
+            return View();
         }
 
     }
