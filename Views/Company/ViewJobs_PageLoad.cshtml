@@ -6,6 +6,10 @@
 
 <h2>Posted Jobs</h2>
 
+<p>
+    @Html.ActionLink("Back to Dashboard", "CompanyHome")
+</p>
+
 @if (ViewBag.Message != null)
 { 
     <h4 class="text-danger">@ViewBag.Message</h4>
@@ -28,7 +32,7 @@ else
                 <td>@item.Salary</td>
                 <td>@item.PostedDate.ToShortDateString()</td>
                 <td>
-                    @Html.ActionLink("Edit", "EditJob_PageLoad", new { id = item.JobId })
+                    @Html.ActionLink("Edit", "EditJob", new { id = item.JobId })
                     @Html.ActionLink("Delete", "DeleteJob", new {id = item.JobId})
                 </td>
             </tr>
