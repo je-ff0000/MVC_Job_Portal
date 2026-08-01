@@ -134,9 +134,15 @@ namespace MVC_Project_Job_Portal.Controllers
             return View(jobs);
         }
 
-        public ActionResult EditJob()
+        public ActionResult EditJob(int id)
         {
-            return View();
+            var jobobj = dbobj.JobDetails_Tab.Find(id);
+            if(jobobj == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.JobTypes = GetJobTypes();
+            return View(jobobj);
         }
 
     }
