@@ -8,6 +8,8 @@ namespace MVC_Project_Job_Portal.Models
 {
     public class JobInsert
     {
+        public int JobId { get; set; }
+
         [Required]
         public string JobTitle { get; set; }
 
