@@ -145,5 +145,51 @@ namespace MVC_Project_Job_Portal.Controllers
             return View(jobobj);
         }
 
+        [HttpPost]
+        public ActionResult EditJob_Click(JobDetails_Tab jobobj)
+        {
+            var job = dbobj.JobDetails_Tab.Find(jobobj.JobId);
+
+            if(job != null)
+            {
+                job.JobTitle = jobobj.JobTitle;
+                job.JobDescription = jobobj.JobDescription;
+                job.SkillsRequired = jobobj.SkillsRequired;
+                job.ExperienceRequired = jobobj.ExperienceRequired;
+                job.Qualification = jobobj.Qualification;
+                job.Salary = jobobj.Salary;
+                job.JobType = jobobj.JobType;
+                job.Location = jobobj.Location;
+
+                dbobj.SaveChanges();
+                return RedirectToAction("ViewJobs_PageLoad");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Job not found.");
+            }
+
+            return View("EditJob_PageLoad", jobobj);
+        }
+
+        public ActionResult DeleteJob(int id)
+        {
+            var jobobj = dbobj.JobDetails_Tab.Find(id);
+            if (jobobj == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(jobobj);
+        }
+
+        [HttpPost, ActionName("DeleteJob")]
+        public ActionResult DeleteJobConfirmed(int id)
+        {
+            var jobobj = dbobj.JobDetails_Tab.Find(id);
+            dbobj.JobDetails_Tab.Remove(jobobj);
+            dbobj.SaveChanges();
+            return RedirectToAction("ViewJobs_PageLoad");
+        }
     }
 }
