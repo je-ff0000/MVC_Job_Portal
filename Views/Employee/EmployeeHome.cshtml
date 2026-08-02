@@ -1,8 +1,117 @@
-﻿
+﻿@model IEnumerable<MVC_Project_Job_Portal.sp_GetAllJobs_Result>
 @{
     ViewBag.Title = "EmployeeHome";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Employee Home</h2>
+<h2>Employee Dashboard</h2>
 
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}
+
+@using (Html.BeginForm("EmployeeHome", "Employee", FormMethod.Get))
+{
+    <div class="row">
+
+        <div class="col-md-3">
+            @Html.TextBox("JobTitle", null, new
+            {
+                @class = "form-control",
+                                                  placeholder = "Job Title"
+            })
+        </div>
+
+        <div class="col-md-3">
+            @Html.TextBox("Location", null, new
+            {
+                @class = "form-control",
+                                                   placeholder = "Location"
+            })
+        </div>
+
+        <div class="col-md-3">
+            @Html.TextBox("Skill", null, new
+            {
+                @class = "form-control",
+                                                  placeholder = "Skill"
+            })
+        </div>
+
+        <div class="col-md-3">
+            @Html.DropDownList("Experience", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Any Experience", Value="" },
+                    new SelectListItem{ Text="Fresher", Value="0" },
+                    new SelectListItem{ Text="1 Year", Value="1" },
+                    new SelectListItem{ Text="2 Years", Value="2" },
+                    new SelectListItem{ Text="3 Years", Value="3" },
+                    new SelectListItem{ Text="5+ Years", Value="5" }
+                }, new { @class = "form-control" })
+        </div>
+
+    </div>
+
+    <br />
+
+    <input type="submit" value="Search" class="btn btn-primary" />
+    @Html.ActionLink("Clear", "EmployeeHome", null,
+                    new { @class = "btn btn-default" })
+
+}
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <strong>@item.JobTitle</strong>
+            </div>
+
+            <div class="panel-body">
+
+                <p>
+                    <strong>Company :</strong>
+                    @item.CompanyName
+                </p>
+
+                <p>
+                    <strong>Location :</strong>
+                    @item.Location
+                </p>
+
+                <p>
+                    <strong>Experience :</strong>
+                    @item.ExperienceRequired
+                </p>
+
+                <p>
+                    <strong>Salary :</strong>
+                    @item.Salary
+                </p>
+
+                <p>
+                    <strong>Posted :</strong>
+                    @item.PostedDate.ToShortDateString()
+                </p>
+
+                @Html.ActionLink(
+                    "View Details",
+                    "JobDetails_PageLoad",
+                    new { id = item.JobId },
+                    new { @class = "btn btn-success" })
+
+            </div>
+
+        </div>
+    }
+}
+else
+{
+    <h4>No jobs available.</h4>
+}
