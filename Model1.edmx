@@ -449,10 +449,10 @@
           <Parameter Name="CompanyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetJobsCountByCompany" ReturnType="Collection(Int32)">
-            <Parameter Name="cid" Mode="In" Type="Int32" />
+          <Parameter Name="cid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ViewPostedJobs" ReturnType="Collection(MVC_Project_Job_PortalModel.sp_ViewPostedJobs_Result)">
-            <Parameter Name="cid" Mode="In" Type="Int32" />
+          <Parameter Name="cid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_GetAllJobs_Result">
@@ -468,7 +468,7 @@
           <Property Type="String" Name="Location" Nullable="false" MaxLength="200" />
           <Property Type="DateTime" Name="LastDate" Nullable="false" />
           <Property Type="DateTime" Name="PostedDate" Nullable="false" Precision="23" />
-          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="sp_GetCompanyById_Result">
           <Property Type="Int32" Name="CompanyId" Nullable="false" />
@@ -615,7 +615,7 @@
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="LastDate" ColumnName="LastDate" />
                 <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
