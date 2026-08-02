@@ -247,6 +247,8 @@
     <Content Include="Views\Login\LoginPageLoad.cshtml" />
     <Content Include="Views\Company\ViewJobs_PageLoad.cshtml" />
     <Content Include="Views\Company\InsertJob_PageLoad.cshtml" />
+    <Content Include="Views\Company\EditJob.cshtml" />
+    <Content Include="Views\Company\DeleteJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
