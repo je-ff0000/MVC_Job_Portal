@@ -116,7 +116,22 @@ namespace MVC_Project_Job_Portal.Controllers
 
         public ActionResult EmployeeHome()
         {
-            return View();
+            try
+            {
+                var jobs = dbobj.sp_GetAllJobs().ToList();
+
+                if(jobs.Count == 0)
+                {
+                    ViewBag.Message = "No jobs available";  
+                }
+
+                return View(jobs);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View();
+            }
         }
     }
 }
