@@ -1,0 +1,84 @@
+﻿@model MVC_Project_Job_Portal.JobDetails_Tab
+@{
+    ViewBag.Title = "JobDetails_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Job Details</h2>
+<p>
+    @Html.ActionLink("Home", "EmployeeHome")
+</p>
+<hr />
+<dl>
+    <dt>
+        @Html.DisplayNameFor(model => model.JobTitle)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.JobTitle)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.JobDescription)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.JobDescription)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.SkillsRequired)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.SkillsRequired)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.ExperienceRequired)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ExperienceRequired)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Qualification)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Qualification)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Salary)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Salary)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.JobType)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.JobType)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Location)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Location)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.LastDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.LastDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.PostedDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.PostedDate)
+    </dd>
+</dl>
+
+    @using(Html.BeginForm("ApplyJob","Employee",FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.JobId)
+
+        <div class="form-group">
+            <input type="submit" value="Apply" class="btn btn-success" />
+        </div>
+    }
+
+
