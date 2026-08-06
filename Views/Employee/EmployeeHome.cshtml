@@ -13,6 +13,18 @@
     </div>
 }
 
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-12">
+        @Html.ActionLink("My Applications", "MyApplications_PageLoad", "Employee",
+                          null, new { @class = "btn btn-primary" })
+
+        @Html.Raw("&nbsp;")
+
+        @Html.ActionLink("Logout", "LoginPageLoad", "Login", null,
+                          new { @class = "btn btn-danger" })
+    </div>
+</div>
+
 @using (Html.BeginForm("EmployeeHome", "Employee", FormMethod.Get))
 {
     <div class="row">
@@ -63,6 +75,7 @@
 
 }
 
+<br />
 @if (Model != null && Model.Any())
 {
     foreach (var item in Model)
