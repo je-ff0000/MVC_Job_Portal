@@ -363,5 +363,36 @@ namespace MVC_Project_Job_Portal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ViewPostedJobs_Result>("sp_ViewPostedJobs", cidParameter);
         }
+    
+        public virtual ObjectResult<sp_GetApplicationsByEmployee_Result> sp_GetApplicationsByEmployee(Nullable<int> eid)
+        {
+            var eidParameter = eid.HasValue ?
+                new ObjectParameter("eid", eid) :
+                new ObjectParameter("eid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetApplicationsByEmployee_Result>("sp_GetApplicationsByEmployee", eidParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_GetResumeByEmployeeId(Nullable<int> eid)
+        {
+            var eidParameter = eid.HasValue ?
+                new ObjectParameter("eid", eid) :
+                new ObjectParameter("eid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetResumeByEmployeeId", eidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_CheckApplicationExists(Nullable<int> jid, Nullable<int> eid)
+        {
+            var jidParameter = jid.HasValue ?
+                new ObjectParameter("jid", jid) :
+                new ObjectParameter("jid", typeof(int));
+    
+            var eidParameter = eid.HasValue ?
+                new ObjectParameter("eid", eid) :
+                new ObjectParameter("eid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_CheckApplicationExists", jidParameter, eidParameter);
+        }
     }
 }

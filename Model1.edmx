@@ -116,10 +116,17 @@
           <Parameter Name="eid" Type="int" Mode="In" />
           <Parameter Name="respath" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_CheckApplicationExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jid" Type="int" Mode="In" />
+          <Parameter Name="eid" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_DeleteJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jid" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_GetAllJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetApplicationsByEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eid" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetCompanyById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cid" Type="int" Mode="In" />
         </Function>
@@ -138,6 +145,9 @@
         <Function Name="sp_GetRegId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="uname" Type="varchar" Mode="In" />
           <Parameter Name="pw" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetResumeByEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eid" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_InsertCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cid" Type="int" Mode="In" />
@@ -454,6 +464,16 @@
           <FunctionImport Name="sp_ViewPostedJobs" ReturnType="Collection(MVC_Project_Job_PortalModel.sp_ViewPostedJobs_Result)">
           <Parameter Name="cid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetApplicationsByEmployee" ReturnType="Collection(MVC_Project_Job_PortalModel.sp_GetApplicationsByEmployee_Result)">
+          <Parameter Name="eid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetResumeByEmployeeId" ReturnType="Collection(String)">
+          <Parameter Name="eid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CheckApplicationExists" ReturnType="Collection(Int32)">
+            <Parameter Name="jid" Mode="In" Type="Int32" />
+            <Parameter Name="eid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_GetAllJobs_Result">
           <Property Type="Int32" Name="JobId" Nullable="false" />
@@ -516,6 +536,15 @@
           <Property Type="DateTime" Name="LastDate" Nullable="false" />
           <Property Type="DateTime" Name="PostedDate" Nullable="false" Precision="23" />
           <Property Type="Boolean" Name="Status" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GetApplicationsByEmployee_Result">
+          <Property Type="Int32" Name="ApplicationId" Nullable="false" />
+          <Property Type="Int32" Name="JobId" Nullable="false" />
+          <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Location" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="AppliedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApplicationStatus" Nullable="true" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -694,6 +723,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetApplicationsByEmployee" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetApplicationsByEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC_Project_Job_PortalModel.sp_GetApplicationsByEmployee_Result">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="AppliedDate" ColumnName="AppliedDate" />
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetResumeByEmployeeId" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetResumeByEmployeeId" />
+          <FunctionImportMapping FunctionImportName="sp_CheckApplicationExists" FunctionName="MVC_Project_Job_PortalModel.Store.sp_CheckApplicationExists" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
