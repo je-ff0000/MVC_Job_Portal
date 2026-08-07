@@ -150,23 +150,23 @@ namespace MVC_Project_Job_Portal.Controllers
         }
 
         [HttpPost]
-        public ActionResult ApplyJob(int id)
+        public ActionResult ApplyJob(int JobId)
         {
             int employeeId = Convert.ToInt32(Session["RegId"]);
 
-            var exists = dbobj.sp_CheckApplicationExists(id, employeeId).FirstOrDefault();
+            var exists = dbobj.sp_CheckApplicationExists(JobId, employeeId).FirstOrDefault();
 
             if (exists == 1)
             {
                 TempData["Message"] = "You have already applied for this job.";
-                return RedirectToAction("JobDetails_PageLoad", new { id });
+                return RedirectToAction("JobDetails_PageLoad", new { id = JobId });
             }
 
-            dbobj.sp_ApplyJob(id, employeeId);
+            dbobj.sp_ApplyJob(JobId, employeeId);
 
             TempData["Message"] = "Application submitted successfully.";
 
-            return RedirectToAction("JobDetails_PageLoad", new { id });
+            return RedirectToAction("JobDetails_PageLoad", new { id = JobId });
         }
     }
 }
