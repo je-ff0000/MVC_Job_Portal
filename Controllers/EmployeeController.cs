@@ -136,12 +136,37 @@ namespace MVC_Project_Job_Portal.Controllers
 
         public ActionResult JobDetails_PageLoad(int id)
         {
-                var jobobj = dbobj.JobDetails_Tab.Find(id);
-                if(jobobj == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(jobobj);
+            var jobobj = dbobj.JobDetails_Tab.Find(id);
+            int employeeId = Convert.ToInt32(Session["RegId"]);
+            if (jobobj == null)
+            {
+                return HttpNotFound();
+            }
+            var applied = dbobj.sp_CheckApplicationExists(id, employeeId).FirstOrDefault();
+            ViewBag.Applied = (applied == 1);
+
+
+            return View(jobobj);
+        }
+
+        [HttpPost]
+        public ActionResult ApplyJob(int id)
+        {
+            int employeeId = Convert.ToInt32(Session["RegId"]);
+
+            var exists = dbobj.sp_CheckApplicationExists(id, employeeId).FirstOrDefault();
+
+            if (exists == 1)
+            {
+                TempData["Message"] = "You have already applied for this job.";
+                return RedirectToAction("JobDetails_PageLoad", new { id });
+            }
+
+            dbobj.sp_ApplyJob(id, employeeId);
+
+            TempData["Message"] = "Application submitted successfully.";
+
+            return RedirectToAction("JobDetails_PageLoad", new { id });
         }
     }
 }

@@ -33,23 +33,6 @@ namespace MVC_Project_Job_Portal
         public virtual DbSet<JobDetails_Tab> JobDetails_Tab { get; set; }
         public virtual DbSet<Login_Tab> Login_Tab { get; set; }
     
-        public virtual int sp_ApplyJob(Nullable<int> jid, Nullable<int> eid, string respath)
-        {
-            var jidParameter = jid.HasValue ?
-                new ObjectParameter("jid", jid) :
-                new ObjectParameter("jid", typeof(int));
-    
-            var eidParameter = eid.HasValue ?
-                new ObjectParameter("eid", eid) :
-                new ObjectParameter("eid", typeof(int));
-    
-            var respathParameter = respath != null ?
-                new ObjectParameter("respath", respath) :
-                new ObjectParameter("respath", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ApplyJob", jidParameter, eidParameter, respathParameter);
-        }
-    
         public virtual int sp_DeleteJob(Nullable<int> jid)
         {
             var jidParameter = jid.HasValue ?
@@ -393,6 +376,19 @@ namespace MVC_Project_Job_Portal
                 new ObjectParameter("eid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_CheckApplicationExists", jidParameter, eidParameter);
+        }
+    
+        public virtual int sp_ApplyJob(Nullable<int> jid, Nullable<int> eid)
+        {
+            var jidParameter = jid.HasValue ?
+                new ObjectParameter("jid", jid) :
+                new ObjectParameter("jid", typeof(int));
+    
+            var eidParameter = eid.HasValue ?
+                new ObjectParameter("eid", eid) :
+                new ObjectParameter("eid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ApplyJob", jidParameter, eidParameter);
         }
     }
 }

@@ -114,7 +114,6 @@
         <Function Name="sp_ApplyJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jid" Type="int" Mode="In" />
           <Parameter Name="eid" Type="int" Mode="In" />
-          <Parameter Name="respath" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_CheckApplicationExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jid" Type="int" Mode="In" />
@@ -369,11 +368,6 @@
             <End Role="JobDetails_Tab" EntitySet="JobDetails_Tab" />
             <End Role="JobApplication_Tab" EntitySet="JobApplication_Tab" />
           </AssociationSet>
-          <FunctionImport Name="sp_ApplyJob">
-            <Parameter Name="jid" Mode="In" Type="Int32" />
-            <Parameter Name="eid" Mode="In" Type="Int32" />
-            <Parameter Name="respath" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_DeleteJob">
           <Parameter Name="jid" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -471,6 +465,10 @@
           <Parameter Name="eid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_CheckApplicationExists" ReturnType="Collection(Int32)">
+            <Parameter Name="jid" Mode="In" Type="Int32" />
+            <Parameter Name="eid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ApplyJob">
             <Parameter Name="jid" Mode="In" Type="Int32" />
             <Parameter Name="eid" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -627,7 +625,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_ApplyJob" FunctionName="MVC_Project_Job_PortalModel.Store.sp_ApplyJob" />
           <FunctionImportMapping FunctionImportName="sp_DeleteJob" FunctionName="MVC_Project_Job_PortalModel.Store.sp_DeleteJob" />
           <FunctionImportMapping FunctionImportName="sp_GetAllJobs" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetAllJobs">
             <ResultMapping>
@@ -738,6 +735,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetResumeByEmployeeId" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetResumeByEmployeeId" />
           <FunctionImportMapping FunctionImportName="sp_CheckApplicationExists" FunctionName="MVC_Project_Job_PortalModel.Store.sp_CheckApplicationExists" />
+          <FunctionImportMapping FunctionImportName="sp_ApplyJob" FunctionName="MVC_Project_Job_PortalModel.Store.sp_ApplyJob" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
