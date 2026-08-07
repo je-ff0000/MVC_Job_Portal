@@ -169,7 +169,10 @@ namespace MVC_Project_Job_Portal.Controllers
             return RedirectToAction("JobDetails_PageLoad", new { id = JobId });
         }
 
-
+        public ActionResult MyApplications()
+        {
+            return View();
+        }
 
     }
 }
