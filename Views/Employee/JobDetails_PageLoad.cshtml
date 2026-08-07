@@ -71,14 +71,26 @@
         @Html.DisplayFor(model => model.PostedDate)
     </dd>
 </dl>
-
-    @using(Html.BeginForm("ApplyJob","Employee",FormMethod.Post))
+@if (ViewBag.AlreadyApplied)
+{
+    <div style="margin-top:20px;">
+        <span class="text-success" style="font-size:16px; font-weight:bold;">
+            You have already applied for this job.
+        </span>
+    </div>
+}
+else
+{
+    using (Html.BeginForm("ApplyJob", "Employee", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.JobId)
 
         <div class="form-group">
             <input type="submit" value="Apply" class="btn btn-success" />
         </div>
+
     }
+}
+
 
 
