@@ -253,6 +253,7 @@
     <Content Include="Views\Company\EditJob.cshtml" />
     <Content Include="Views\Company\DeleteJob.cshtml" />
     <Content Include="Views\Employee\JobDetails_PageLoad.cshtml" />
+    <Content Include="Views\Employee\MyApplications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

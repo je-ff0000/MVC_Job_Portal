@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVC_Project_Job_Portal.sp_GetApplicationsByEmployee_Result>
+@{
+    ViewBag.Title = "MyApplications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Back to Dashboard",
+                 "EmployeeHome",
+                 "Employee",
+                 null,
+                 new { @class = "btn btn-primary" })
+<h2>My Applications</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="text-info text-center">
+        @ViewBag.Message
+    </div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Job Title</th>
+
+            <th>Company</th>
+
+            <th>Location</th>
+
+            <th>Applied Date</th>
+
+            <th>Status</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.JobTitle </td>
+                <td> @item.CompanyName </td>
+                <td> @item.Location</td>
+                <td> @item.AppliedDate</td>
+                <td> @item.ApplicationStatus</td>
+            </tr>
+        }
+    </table>
+}
+
+else
+{
+    <div class="text-center">
+        <h3>No Applications Found</h3>
+    </div>
+}
+

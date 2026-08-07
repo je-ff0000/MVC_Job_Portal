@@ -171,7 +171,24 @@ namespace MVC_Project_Job_Portal.Controllers
 
         public ActionResult MyApplications()
         {
-            return View();
+            try
+            {
+                int employeeId = Convert.ToInt32(Session["RegId"]);
+
+                var applications = dbobj.sp_GetApplicationsByEmployee(employeeId).ToList();
+                
+                if(applications.Count == 0)
+                {
+                    ViewBag.Message = "You have not applied for any jobs";
+                }
+
+                return View(applications);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View();
+            }
         }
 
     }
