@@ -67,6 +67,10 @@ namespace MVC_Project_Job_Portal.Controllers
         {
             int regId = Convert.ToInt32(Session["RegId"]);
             var companyName = dbobj.sp_GetCompanyName(regId).FirstOrDefault();
+            var jobs = dbobj.sp_ViewPostedJobs(regId).ToList();
+            ViewBag.TotalJobs = jobs.Count;
+            ViewBag.ActiveJobs = jobs.Count(j => j.LastDate >= DateTime.Today);
+            ViewBag.ClosedJobs = jobs.Count(j => j.LastDate < DateTime.Today);
             ViewBag.CompanyName = companyName;
             return View();
         }
