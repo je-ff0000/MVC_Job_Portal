@@ -123,6 +123,9 @@
           <Parameter Name="jid" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_GetAllJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetApplicantsByJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jid" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetApplicationsByEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="eid" Type="int" Mode="In" />
         </Function>
@@ -472,6 +475,9 @@
             <Parameter Name="jid" Mode="In" Type="Int32" />
             <Parameter Name="eid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetApplicantsByJob" ReturnType="Collection(MVC_Project_Job_PortalModel.sp_GetApplicantsByJob_Result)">
+            <Parameter Name="jid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_GetAllJobs_Result">
           <Property Type="Int32" Name="JobId" Nullable="false" />
@@ -541,6 +547,18 @@
           <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="Location" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="AppliedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ApplicationStatus" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="sp_GetApplicantsByJob_Result">
+          <Property Type="Int32" Name="ApplicationId" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="101" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Phone" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Qualification" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Skills" Nullable="false" />
+          <Property Type="String" Name="ResumePath" Nullable="false" MaxLength="300" />
           <Property Type="DateTime" Name="AppliedDate" Nullable="true" Precision="23" />
           <Property Type="String" Name="ApplicationStatus" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -736,6 +754,22 @@
           <FunctionImportMapping FunctionImportName="sp_GetResumeByEmployeeId" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetResumeByEmployeeId" />
           <FunctionImportMapping FunctionImportName="sp_CheckApplicationExists" FunctionName="MVC_Project_Job_PortalModel.Store.sp_CheckApplicationExists" />
           <FunctionImportMapping FunctionImportName="sp_ApplyJob" FunctionName="MVC_Project_Job_PortalModel.Store.sp_ApplyJob" />
+          <FunctionImportMapping FunctionImportName="sp_GetApplicantsByJob" FunctionName="MVC_Project_Job_PortalModel.Store.sp_GetApplicantsByJob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC_Project_Job_PortalModel.sp_GetApplicantsByJob_Result">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="ResumePath" ColumnName="ResumePath" />
+                <ScalarProperty Name="AppliedDate" ColumnName="AppliedDate" />
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

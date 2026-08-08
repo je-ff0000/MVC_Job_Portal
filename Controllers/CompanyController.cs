@@ -198,5 +198,27 @@ namespace MVC_Project_Job_Portal.Controllers
             dbobj.SaveChanges();
             return RedirectToAction("ViewJobs_PageLoad");
         }
+
+        public ActionResult ViewApplicants_PageLoad(int id)
+        {
+            try
+            {
+                var applicants = dbobj.sp_GetApplicantsByJob(id).ToList();
+
+                ViewBag.JobId = id;
+
+                if(applicants.Count == 0)
+                {
+                    ViewBag.Message = "No applicants for this job";
+                }
+
+                return View(applicants);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View();
+            }
+        }
     }
 }

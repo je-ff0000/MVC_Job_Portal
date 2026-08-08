@@ -390,5 +390,14 @@ namespace MVC_Project_Job_Portal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ApplyJob", jidParameter, eidParameter);
         }
+    
+        public virtual ObjectResult<sp_GetApplicantsByJob_Result> sp_GetApplicantsByJob(Nullable<int> jid)
+        {
+            var jidParameter = jid.HasValue ?
+                new ObjectParameter("jid", jid) :
+                new ObjectParameter("jid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetApplicantsByJob_Result>("sp_GetApplicantsByJob", jidParameter);
+        }
     }
 }

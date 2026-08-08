@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MVC_Project_Job_Portal.sp_GetApplicantsByJob_Result>
+@{
+    ViewBag.Title = "ViewApplicants_PageLoad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Applicants</h2>
+<br />
+
+@Html.ActionLink(
+    "Back to Posted Jobs",
+    "ViewJobs_PageLoad",
+    null,
+    new { @class = "btn btn-primary" })
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}
+
+<br />
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Qualification</th>
+            <th>Skills</th>
+            <th>Applied On</th>
+            <th>Resume</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmployeeName</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.Qualification</td>
+                <td>@item.Skills</td>
+                <td>@item.AppliedDate</td>
+                <td>
+                    <a href="@Url.Content(item.ResumePath)" target="_blank">
+                        View Resume
+                    </a>
+                </td>
+                <td>@item.ApplicationStatus</td>
+                <td>
+                    @Html.ActionLink(
+                       "Accept",
+                       "AcceptApplicant",
+                       new { applicationId = item.ApplicationId },
+                       new { @class = "btn btn-success btn-md" })
+
+                    @Html.Raw(" ")
+
+                    @Html.ActionLink(
+                        "Reject",
+                        "RejectApplicant",
+                        new { applicationId = item.ApplicationId },
+                        new { @class = "btn btn-danger btn-md" })
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}
+else
+{
+    <h4>No Applicants Found.</h4>
+}
