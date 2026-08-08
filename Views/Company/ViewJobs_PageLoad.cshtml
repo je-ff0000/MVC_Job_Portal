@@ -33,10 +33,12 @@ else
                 <td>@item.PostedDate.ToShortDateString()</td>
                 <td>
                     @Html.ActionLink("Edit", "EditJob", new { id = item.JobId })
-                    @Html.ActionLink("Delete", "DeleteJob", new {id = item.JobId})
-                    @Html.ActionLink("View Applicants (0)", "ViewApplicants_PageLoad", 
-                                       new {id = item.JobId}, 
-                                       new {@class = "btn btn-info btn-sm"})
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("Delete", "DeleteJob", new { id = item.JobId })
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("View Applicants (" + item.ApplicantCount + ")", "ViewApplicants_PageLoad",
+                                       new { id = item.JobId },
+                                       new { @class = "btn btn-info btn-sm" })
                 </td>
             </tr>
         }
