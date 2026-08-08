@@ -125,8 +125,11 @@ namespace MVC_Project_Job_Portal.Controllers
         {
             int CompanyId = Convert.ToInt32(Session["RegId"]);
             var jobs = dbobj.sp_ViewPostedJobs(CompanyId).ToList();
+            ViewBag.TotalJobs = jobs.Count;
+            ViewBag.ActiveJobs = jobs.Count(j => j.LastDate >= DateTime.Today);
+            ViewBag.ClosedJobs = jobs.Count(j => j.LastDate < DateTime.Today);
 
-            if(jobs.Count == 0)
+            if (jobs.Count == 0)
             {
                 ViewBag.Message = "No Posted Jobs";
             }
