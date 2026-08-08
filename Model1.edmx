@@ -202,6 +202,10 @@
           <Parameter Name="pw" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_MaxIdLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_UpdateApplicationStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="aid" Type="int" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_UpdateJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jobdesc" Type="varchar(max)" Mode="In" />
           <Parameter Name="sklreq" Type="varchar(max)" Mode="In" />
@@ -476,7 +480,11 @@
             <Parameter Name="eid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetApplicantsByJob" ReturnType="Collection(MVC_Project_Job_PortalModel.sp_GetApplicantsByJob_Result)">
-            <Parameter Name="jid" Mode="In" Type="Int32" />
+          <Parameter Name="jid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateApplicationStatus">
+            <Parameter Name="aid" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_GetAllJobs_Result">
@@ -770,6 +778,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UpdateApplicationStatus" FunctionName="MVC_Project_Job_PortalModel.Store.sp_UpdateApplicationStatus" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

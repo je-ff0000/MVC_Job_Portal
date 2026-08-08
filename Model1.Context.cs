@@ -399,5 +399,18 @@ namespace MVC_Project_Job_Portal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetApplicantsByJob_Result>("sp_GetApplicantsByJob", jidParameter);
         }
+    
+        public virtual int sp_UpdateApplicationStatus(Nullable<int> aid, string status)
+        {
+            var aidParameter = aid.HasValue ?
+                new ObjectParameter("aid", aid) :
+                new ObjectParameter("aid", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateApplicationStatus", aidParameter, statusParameter);
+        }
     }
 }

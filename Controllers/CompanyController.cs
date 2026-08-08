@@ -220,5 +220,21 @@ namespace MVC_Project_Job_Portal.Controllers
                 return View();
             }
         }
+
+        public ActionResult UpdateApplicationStatus(int applicationId, int jobId, string status)
+        {
+            try
+            {
+                dbobj.sp_UpdateApplicationStatus(applicationId, status);
+
+                TempData["Message"] = "Application status updated successfully.";
+            }
+            catch(Exception ex)
+            {
+                TempData["Message"] = ex.Message;
+            }
+
+            return RedirectToAction("ViewApplicants_PageLoad", new { id = jobId });
+        }
     }
 }

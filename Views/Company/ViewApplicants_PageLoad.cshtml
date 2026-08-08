@@ -51,21 +51,42 @@
                         View Resume
                     </a>
                 </td>
-                <td>@item.ApplicationStatus</td>
                 <td>
-                    @Html.ActionLink(
+                    @if (item.ApplicationStatus == "Accepted")
+                    {
+                        <span class="label label-success">Accepted</span> 
+                    }
+                    else if (item.ApplicationStatus == "Rejected")
+                    {
+                        <span class="label label-danger">Rejected</span> 
+                    }
+                    else
+                    {
+                        <span class="label label-info">Applied</span>
+                    }
+                </td>
+                <td>
+                    @if(item.ApplicationStatus == "Applied")
+                    {
+                        @Html.ActionLink(
                        "Accept",
-                       "AcceptApplicant",
-                       new { applicationId = item.ApplicationId },
+                       "UpdateApplicationStatus",
+                       new { applicationId = item.ApplicationId,
+                             jobId = ViewBag.JobId,
+                             status = "Accepted"},
                        new { @class = "btn btn-success btn-md" })
 
                     @Html.Raw(" ")
 
                     @Html.ActionLink(
                         "Reject",
-                        "RejectApplicant",
-                        new { applicationId = item.ApplicationId },
+                        "UpdateApplicationStatus",
+                        new { applicationId = item.ApplicationId,
+                              jobId = ViewBag.JobId,
+                              status = "Rejected"},
                         new { @class = "btn btn-danger btn-md" })
+                    }
+                    
                 </td>
             </tr>
 
