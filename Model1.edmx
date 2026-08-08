@@ -533,7 +533,7 @@
           <Property Type="String" Name="Location" Nullable="false" MaxLength="200" />
           <Property Type="DateTime" Name="LastDate" Nullable="false" />
           <Property Type="DateTime" Name="PostedDate" Nullable="false" Precision="23" />
-          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="Int32" Name="ApplicantCount" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_GetApplicationsByEmployee_Result">
           <Property Type="Int32" Name="ApplicationId" Nullable="false" />
@@ -716,7 +716,7 @@
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="LastDate" ColumnName="LastDate" />
                 <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ApplicantCount" ColumnName="ApplicantCount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

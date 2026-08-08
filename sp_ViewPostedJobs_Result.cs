@@ -25,6 +25,6 @@ namespace MVC_Project_Job_Portal
         public string Location { get; set; }
         public System.DateTime LastDate { get; set; }
         public System.DateTime PostedDate { get; set; }
-        public bool Status { get; set; }
+        public Nullable<int> ApplicantCount { get; set; }
     }
 }
